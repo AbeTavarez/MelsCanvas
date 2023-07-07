@@ -1,0 +1,44 @@
+ :root {
+
+}
+
+* {
+    /* background-color: black;
+    color: #fff */
+}
+
+main {
+    display: grid;
+    height: 100vh;
+
+    grid-template-areas:
+    "top top top"
+    "left canvas right"
+    "left bottom right";
+}
+
+.top-panel {
+    background-color: red;
+    grid-area: top;
+}
+
+.left-panel {
+    background-color: green;
+    grid-area: left;
+}
+
+canvas {
+    grid-area: canvas;
+    height: 50vh;
+}
+
+.right-panel {
+    background-color: purple;
+    grid-area: right;
+}
+
+.bottom-panel {
+    background-color: blue;
+    grid-area: bottom;
+} 
+

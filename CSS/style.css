@@ -1,10 +1,11 @@
  :root {
-
+    
 }
 
 * {
-    /* background-color: black;
-    color: #fff */
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 main {
@@ -18,27 +19,35 @@ main {
 }
 
 .top-panel {
-    background-color: red;
+    background-color:darkorchid;
+    height: 150px;
     grid-area: top;
 }
 
 .left-panel {
-    background-color: green;
+    background-color: darkorchid;
     grid-area: left;
+    width: 150px;
 }
 
 canvas {
     grid-area: canvas;
-    height: 50vh;
+    /* height: 50vh; */
 }
 
 .right-panel {
-    background-color: purple;
+    background-color: darkorchid;
     grid-area: right;
+    width: 150px;
 }
 
 .bottom-panel {
-    background-color: blue;
+    background-color: darkorchid;
     grid-area: bottom;
+    height: 150px;
 } 
 
+.top-panel, .bottom-panel, .left-panel, .right-panel {
+    border: solid black 2px;
+    margin: 5px
+}

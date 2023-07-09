@@ -1,7 +1,10 @@
+// import { updateColorsArray } from "./utils";
+
 const canvas = document.getElementById('canvas');
 const colorPicker = document.querySelector('#color-picker');
 const resetCanvas = document.querySelector('#rest-canvas');
 const body = document.querySelector('body');
+const colorsHistoryContainer = document.querySelector('.colors-history-container');
 
 // ==== Tools
 const pen = document.querySelector('.fa-pen');
@@ -14,12 +17,13 @@ canvas.height = window.innerHeight
 canvas.width = (window.innerWidth - 300);
 ctx.strokeStyle = 'black';
 
-// ===
+//* === Variables =====
 let lastX = 0;
 let lastY = 0;
 let selectedTool = 'pencil';
 let isDrawing = false;
 let isErasing = false;
+const colorsHistory = [];
 
 /**
  * Draw to the canvas
@@ -41,7 +45,7 @@ function draw(e) {
 function erase(e) {
     //TODO: erase drawing
     if (selectedTool !== 'eraser' || !isErasing) return;
-    console.log('erasing');
+
     ctx.globalCompositeOperation = 'destination-out';
     ctx.strokeStyle = 'rbg(2555, 2555, 255, 1)';
     ctx.beginPath();
@@ -56,12 +60,14 @@ function erase(e) {
  * Change Pen Color
  */
 function changePenColor() {
-    console.log('change');
     ctx.strokeStyle = this.value;
+    renderColorsHistory()
 }
 
 
 //? ==========  Events Listeners
+
+// window.addEventListener('DOMContentLoaded', renderColorsHistory)
 
 // === Draw
 canvas.addEventListener('mousemove', draw);
@@ -76,13 +82,15 @@ canvas.addEventListener('mousedown', (e) => {
 canvas.addEventListener('mousemove', erase);
 canvas.addEventListener('mousedown', () => isErasing = true);
 
-// ===
+// === Changes isDrawing State
 canvas.addEventListener('mouseup', () => isDrawing = false);
 canvas.addEventListener('mouseout', () => isDrawing = false);
 
 
 colorPicker.addEventListener('input', changePenColor);
 colorPicker.addEventListener('change', changePenColor);
+// add new selected color to colorsHistory
+colorPicker.addEventListener('change', updateColorsArray);
 resetCanvas.addEventListener('click', () => ctx.reset());
 body.addEventListener('mouseup', function() {
     this.style.cursor = '';
@@ -92,3 +100,34 @@ body.addEventListener('mouseup', function() {
 pen.addEventListener('click', () => selectedTool = 'pencil');
 paintBrush.addEventListener('click', () => selectedTool = 'paintbrush');
 eraser.addEventListener('click', () => selectedTool = 'eraser');
+
+
+
+/**
+ * Render Color History Squares
+ */
+export function renderColorsHistory(colorsHistory = []) {
+    console.log(colorsHistory);
+    // const colorsSquares = colorsHistory.map(color => (
+    //     `<div class='squareDiv' style='background-color:${color}'></div>`
+    // ));
+    // console.log({colorsSquares});
+    // colorsSquares.forEach(div => colorsHistoryContainer.innerHTML = div);
+
+    colorsHistoryContainer.innerHTML = '';
+    colorsHistory.forEach(color => {
+        const div = document.createElement('div');
+        div.classList.add('square-div');
+        div.style.backgroundColor = color;
+        colorsHistoryContainer.appendChild(div)
+    })
+  }
+  
+  /**
+   * Update Colors Array
+   */
+  export function updateColorsArray() {
+      colorsHistory.unshift(this.value);
+      console.log(colorsHistory);
+      renderColorsHistory(colorsHistory);
+  }

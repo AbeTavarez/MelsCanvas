@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./CSS/style.css" />
     <script type="module" src="./JS/script.js" defer></script>
+    <script type="module" src="./JS/utils.js" defer></script>
     <!-- FONT AWESOME  -->
     <link
       rel="stylesheet"
@@ -19,9 +20,16 @@
     <main>
       <!-- TOP PANEL  -->
       <section id="top-panel" class="top-panel">
-        <h1>Top</h1>
+       <div class="logo">
+        <h1>Mel's Canvas</h1>
         <i class="fa-solid fa-user"></i>
-        <button id="rest-canvas">Reset Canvas</button>
+       </div>
+
+        <div class="lofi-girl">
+            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapercave.com%2Fwp%2Fwp7098281.jpg&f=1&nofb=1&ipt=689e94368379898447dd7488fc567e54a6dc7b340c04fb9151e1cd4478442e02&ipo=images" alt="" srcset="" width="100px" height="100px">
+        </div>
+
+        <button id="rest-canvas" class="reset-btn">Reset Canvas</button>
       </section>
 
       <!-- CANVAS  -->
@@ -34,6 +42,8 @@
         <div class="color-picker-container">
           <label for="color-picker">Color Picker:</label>
           <input type="color" name="color-picker" id="color-picker" />
+
+          <div class="colors-history-container"></div>
         </div>
 
         <div class="pencils-container">

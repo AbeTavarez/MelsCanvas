@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Fasthand&family=Ubuntu+Mono&display=swap');
+ 
  :root {
     
 }
@@ -6,6 +8,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Ubuntu Mono';
 }
 
 main {
@@ -28,6 +31,19 @@ main {
     background-color: darkorchid;
     grid-area: left;
     width: 150px;
+    padding: 10px;
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+.left-panel h1 {
+    margin-bottom: 50%;
+    text-decoration: underline;
+}
+
+.left-panel div {
+    margin-bottom: 1.3em;
 }
 
 canvas {

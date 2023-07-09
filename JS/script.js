@@ -1,10 +1,10 @@
-// import { updateColorsArray } from "./utils";
 
 const canvas = document.getElementById('canvas');
 const colorPicker = document.querySelector('#color-picker');
 const resetCanvas = document.querySelector('#rest-canvas');
 const body = document.querySelector('body');
 const colorsHistoryContainer = document.querySelector('.colors-history-container');
+
 
 // ==== Tools
 const pen = document.querySelector('.fa-pen');
@@ -67,8 +67,6 @@ function changePenColor() {
 
 //? ==========  Events Listeners
 
-// window.addEventListener('DOMContentLoaded', renderColorsHistory)
-
 // === Draw
 canvas.addEventListener('mousemove', draw);
 canvas.addEventListener('mousedown', (e) => {
@@ -101,26 +99,24 @@ pen.addEventListener('click', () => selectedTool = 'pencil');
 paintBrush.addEventListener('click', () => selectedTool = 'paintbrush');
 eraser.addEventListener('click', () => selectedTool = 'eraser');
 
-
+// ======
 
 /**
- * Render Color History Squares
+ * Render Color History Squares and adds event lister for changing the color
  */
 export function renderColorsHistory(colorsHistory = []) {
-    console.log(colorsHistory);
-    // const colorsSquares = colorsHistory.map(color => (
-    //     `<div class='squareDiv' style='background-color:${color}'></div>`
-    // ));
-    // console.log({colorsSquares});
-    // colorsSquares.forEach(div => colorsHistoryContainer.innerHTML = div);
-
     colorsHistoryContainer.innerHTML = '';
     colorsHistory.forEach(color => {
         const div = document.createElement('div');
         div.classList.add('square-div');
         div.style.backgroundColor = color;
         colorsHistoryContainer.appendChild(div)
-    })
+    });
+    const colorHistorySquares = document.querySelectorAll('.square-div');
+    colorHistorySquares.forEach(sq => sq.addEventListener('click', function() {
+        console.log(this);
+        ctx.strokeStyle = this.style.backgroundColor
+    }));
   }
   
   /**
